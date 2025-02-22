@@ -11,8 +11,8 @@ buttonContainer.addEventListener('click', e => {
 
         switch(btn.className) {
             case 'num':
+                ans = null;
                 if (operator === '') {
-                    ans = null;
                     num1 += btn.textContent;
                     display.textContent = num1;
                 } else {
@@ -23,20 +23,15 @@ buttonContainer.addEventListener('click', e => {
 
             case 'op':
                 if (num1 !== '' && num2 !== '') {
-                    ans = operate(num1, num2, operator);
-                    display.textContent = ans;
-                    resetInput();
-                } 
-                if (ans && num1 === '') {
+                    displayAnswer();
                     num1 = ans;
-                }
+                } 
+
                 operator = btn.textContent;
                 break;
 
             case 'equals':
-                ans = operate(num1, num2, operator);
-                display.textContent = ans;
-                resetInput();
+                displayAnswer();
                 break;
             
             case 'clear':
@@ -45,6 +40,12 @@ buttonContainer.addEventListener('click', e => {
         }
     }
 });
+
+function displayAnswer() {
+    ans = operate(num1, num2, operator);
+    display.textContent = ans;
+    resetInput();
+}
 
 function resetInput() {
     operator = '';
