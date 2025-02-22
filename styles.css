@@ -29,6 +29,8 @@ body {
 }
 
 .display {
+    align-content: center;
+    height: 50px;
     padding: 10px;
     border-radius: 10px;
     background-color: #c4c1c0;
@@ -52,6 +54,6 @@ button {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.equals-button {
+.equals {
     flex: 6;
 }
