@@ -45,7 +45,8 @@ buttonContainer.addEventListener('click', e => {
 function displayAnswer() {
     const decimalPlaces = 7;
     if (num2 !== '') {
-        ans = Math.round(operate(num1, num2, operator) * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
+        ans = operate(num1, num2, operator);
+        if (typeof ans === 'number') ans = Math.round(ans * Math.pow(10, decimalPlaces) / Math.pow(10, decimalPlaces));
         display.textContent = ans;
         resetInput();
     }
@@ -86,5 +87,8 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b === 0) {
+        return "mmm no thanks";
+    }
     return a / b;
 }
