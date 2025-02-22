@@ -22,7 +22,7 @@ buttonContainer.addEventListener('click', e => {
                 break;
 
             case 'op':
-                if (num1 !== '' && num2 !== '') {
+                if (num2 !== '') {
                     displayAnswer();
                     num1 = ans;
                 } 
@@ -36,15 +36,19 @@ buttonContainer.addEventListener('click', e => {
             
             case 'clear':
                 resetInput();
+                ans = null;
                 display.textContent = '';
         }
     }
 });
 
 function displayAnswer() {
-    ans = operate(num1, num2, operator);
-    display.textContent = ans;
-    resetInput();
+    const decimalPlaces = 7;
+    if (num2 !== '') {
+        ans = Math.round(operate(num1, num2, operator) * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
+        display.textContent = ans;
+        resetInput();
+    }
 }
 
 function resetInput() {
