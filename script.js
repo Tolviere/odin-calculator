@@ -13,9 +13,11 @@ buttonContainer.addEventListener('click', e => {
             case 'num':
                 ans = null;
                 if (operator === '') {
+                    if (btn.textContent === '.' && num1.includes('.')) return;
                     num1 += btn.textContent;
                     display.textContent = num1;
                 } else {
+                    if (btn.textContent === '.' && num2.includes('.')) return;
                     num2 += btn.textContent;
                     display.textContent = num2;
                 }
@@ -46,7 +48,7 @@ function displayAnswer() {
     const decimalPlaces = 7;
     if (num2 !== '') {
         ans = operate(num1, num2, operator);
-        if (typeof ans === 'number') ans = Math.round(ans * Math.pow(10, decimalPlaces) / Math.pow(10, decimalPlaces));
+        if (typeof ans === 'number') ans = Math.round(ans * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
         display.textContent = ans;
         resetInput();
     }
